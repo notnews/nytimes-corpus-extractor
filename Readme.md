@@ -1,6 +1,7 @@
 ### NY Times Corpus Extractor
 
-The NY Times Corpus at: https://catalog.ldc.upenn.edu/LDC2008T19
+The NY Times Corpus at: [https://catalog.ldc.upenn.edu/LDC2008T19](https://catalog.ldc.upenn.edu/LDC2008T19).
+
 Unzip the NY Times Corpus and then run the script. Script produces a csv and files containing text of stories.
 
 #### Requirements
