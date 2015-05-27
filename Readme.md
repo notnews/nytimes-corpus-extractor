@@ -31,4 +31,4 @@ This command will be process all XML file in folder 2000 and generate CSV output
 The output text files store in folder "text"
 
 #### License
-Scripts are released under the [MIT License](https://github.com/soodoku/NY_Times_Corpus_Extractor/blob/master/License.md).
+Scripts are released under the [MIT License](License.md).
