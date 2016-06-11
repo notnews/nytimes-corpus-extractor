@@ -65,7 +65,7 @@ DataFields  =  [
                 ('Day Of Week', 'String', 'Single', '/nitf/head/meta[@name="publication_day_of_week"]/@content'),
                 ('Descriptors', 'String', 'Multiple', '/nitf/head/docdata/identified-content/classifier[@class="indexing_service" and @type="descriptor"]'),
                 ('Feature Page', 'String', 'Single', '/nitf/head/meta[@name="feature_page"]/@content'),
-                ('General Online Descriptors', 'String', 'Multiple', '/nitf/head/docdata/identifiedcontent/classifier[@class="online_producer" and @type="general_descriptor"]'),
+                ('General Online Descriptors', 'String', 'Multiple', '/nitf/head/docdata/identified-content/classifier[@class="online_producer" and @type="general_descriptor"]'),
                 ('Guid', 'Long', 'Single', '/nitf/head/docdata/doc-id/@id-string'),
                 ('Headline', 'String', 'Single', '/nitf/body[1]/body.head/hedline/hl1'),
                 ('Kicker', 'String', 'Single', '/nitf/head/docdata/series/@series.name'),
@@ -94,7 +94,7 @@ DataFields  =  [
                 ('Slug', 'String', 'Single', '/nitf/head/meta[@name="slug"]/@content'),
                 ('Taxonomic Classifiers', 'String', 'Multiple', '/nitf/head/docdata/identified-content/classifier[@class="online_producer" and @type="taxonomic_classifier"]'),
                 ('Titles', 'String', 'Multiple', '/nitf/head/docdata/identified-content/object.title[@class="indexing_service"]'),
-                ('Types Of Material', 'String', 'Multiple', '/nitf/head/docdata/identifiedcontent/classifier[@class="online_producer" and @type="types_of_material"]'),
+                ('Types Of Material', 'String', 'Multiple', '/nitf/head/docdata/identified-content/classifier[@class="online_producer" and @type="types_of_material"]'),
                 ('Url', 'URL', 'Single', '/nitf/head/pubdata/@ex-ref'),
                 ('Word Count', 'Integer', 'Single', '/nitf/head/pubdata/@item-length'),
                 ]
