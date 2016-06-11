@@ -92,7 +92,7 @@ DataFields  =  [
                 ('Section', 'String', 'Single', '/nitf/head/meta[@name="print_section"]/@content'),
                 ('Series Name', 'String', 'Single', '/nitf/head/meta[@name="series_name"]/@content'),
                 ('Slug', 'String', 'Single', '/nitf/head/meta[@name="slug"]/@content'),
-                ('Taxonomic Classifiers', 'String', 'Multiple', '/nitf/head/docdata/identified-content/classifier[@class="online_producer" and @type="taxinomic_classifier"]'),
+                ('Taxonomic Classifiers', 'String', 'Multiple', '/nitf/head/docdata/identified-content/classifier[@class="online_producer" and @type="taxonomic_classifier"]'),
                 ('Titles', 'String', 'Multiple', '/nitf/head/docdata/identified-content/object.title[@class="indexing_service"]'),
                 ('Types Of Material', 'String', 'Multiple', '/nitf/head/docdata/identifiedcontent/classifier[@class="online_producer" and @type="types_of_material"]'),
                 ('Url', 'URL', 'Single', '/nitf/head/pubdata/@ex-ref'),
