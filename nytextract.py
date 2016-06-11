@@ -35,13 +35,13 @@ def parse_command_line(argv):
     parser = optparse.OptionParser(add_help_option=True, usage=usage)
     
     parser.add_option("-a", "--append", action="store_true", dest="append", default=APPEND_IF_EXIST,
-                      help="Append if existing (default: %s)" % (APPEND_IF_EXIST))
+                      help="Append if existing (default: {0!s})".format((APPEND_IF_EXIST)))
     parser.add_option("-o", "--out", action="store", 
                       type="string", dest="outfile", default=CSV_OUTPUT_FILE,
-                      help="CSV output file (default: %s)" % (CSV_OUTPUT_FILE))
+                      help="CSV output file (default: {0!s})".format((CSV_OUTPUT_FILE)))
     parser.add_option("-d", "--dir", action="store", 
                       type="string", dest="outdir", default=TEXT_OUTPUT_DIR,
-                      help="Text output directory (default: %s)" % (TEXT_OUTPUT_DIR))
+                      help="Text output directory (default: {0!s})".format((TEXT_OUTPUT_DIR)))
     return parser.parse_args(argv)
     
 """Data Fields Information
@@ -110,7 +110,7 @@ def exportText(filename, rootdir, text):
     extdir = rootdir + '/' + os.path.dirname(relpath)
     fname = extdir + '/' + os.path.basename(relpath)
     fname = os.path.splitext(fname)[0] + '.fulltext.txt'
-    print("Exporting text: %s" % (fname))
+    print("Exporting text: {0!s}".format((fname)))
     try:
         if not os.path.exists(extdir):
             os.makedirs(extdir)
@@ -139,7 +139,7 @@ def reform_people(s):
     for p in peoples:
         m = matchPeopleRe.match(p)
         if m:
-            np.append("%s %s" % (m.group(2).strip(), m.group(1).strip()))
+            np.append("{0!s} {1!s}".format(m.group(2).strip(), m.group(1).strip()))
         else:
             np.append(p)
     return MULTIVALUE_SEPARATOR.join(np)
@@ -147,7 +147,7 @@ def reform_people(s):
 def parseXML(filename, csvwriter, textdir = ''):
     """Returns data fields parse from XML input file
     """
-    print("Processing input file: %s" % (filename))
+    print("Processing input file: {0!s}".format((filename)))
     infile = open(filename, 'rt')
     tree = etree.parse(infile)
     infile.close()
@@ -225,7 +225,7 @@ if __name__ == "__main__":
     
     signal.signal(signal.SIGINT, signal_handler)
     
-    print("%s - r2 (2013/05/28)\n" % (os.path.basename(sys.argv[0])))
+    print("{0!s} - r2 (2013/05/28)\n".format((os.path.basename(sys.argv[0]))))
     
     (options, args) = parse_command_line(sys.argv)
 
