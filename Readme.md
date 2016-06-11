@@ -29,4 +29,4 @@ To process all XML files in the folder 2000 (carrying files from year 2000):
 The script will generate a CSV "2000.csv". Story text files will be stored in a folder "text." This folder will have the exact same structure as the folder '2000.'
 
 #### License
-Scripts are released under the [MIT License](License.md).
+Scripts are released under the [MIT License](https://opensource.org/licenses/MIT).
