@@ -4,27 +4,38 @@ The New York Times Corpus is a collection of 1.8 million articles published betw
 
 Once you have the NY Times Corpus, unzip it to a folder. And then run the script. Script produces a csv and text files containing story text.
 
-#### Requirements
-[lxml 3.1.1](https://pypi.python.org/pypi/lxml/3.1.1)
+#### Installation
+
+To install the dependency [lxml 3.1.1](https://pypi.python.org/pypi/lxml/3.1.1):
+
+```
+pip install -r requirements.txt
+```
 
 #### Usage
-```
-Usage: nytextract.py [options] <xml directory>
 
-Options:
+```
+python nytextract.py [options] <xml directory>
+```
+
+**Options:**
+
+```
+
   -h, --help            show this help message and exit
   -a, --append          Append if existing (default: False)
   -o OUTFILE, --out=OUTFILE
                         CSV output file (default: outfile.csv)
   -d OUTDIR, --dir=OUTDIR
                         Text output directory (default: text)
-
 ```
 
 **Example**
-To process all XML files in the folder 2000 (carrying files from year 2000):
+To process all XML files in the folder 2000 (carrying files from year 2000):  
 
-`python nytextract.py -o 2000.csv -d text 2000`
+```
+python nytextract.py -o 2000.csv -d text 2000
+```
 
 The script will generate a CSV "2000.csv". Story text files will be stored in a folder "text." This folder will have the exact same structure as the folder '2000.'
 
