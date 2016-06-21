@@ -48,7 +48,7 @@ def parse_command_line(argv):
    Short Name | Type | Count | XPATH
    Extract from: nyt_corpus_overview.pdf
 """
-DataFields  =  [
+DATA_FIELDS  =  [
                 ('Alternate URL', 'URL', 'Single', '/nitf/head/meta[@name="alternate_url"]/@content'),
                 ('Article Abstract', 'String', 'Single', '/nitf/body/body.head/abstract'),
                 ('Author Biography', 'String', 'Single', '/nitf/body/body.content/block[@class="author_info"]'),
@@ -99,7 +99,7 @@ DataFields  =  [
                 ('Word Count', 'Integer', 'Single', '/nitf/head/pubdata/@item-length'),
                 ]
 
-def exportText(filename, rootdir, text):
+def export_text(filename, rootdir, text):
     """Export text to file with same directory layout
     """
     try:
@@ -120,31 +120,31 @@ def exportText(filename, rootdir, text):
     except:
         print("ERROR")
 
-matchBylineRe = re.compile(r'(?:By\s+)?(.*)', flags=re.I)
+match_by_line_re = re.compile(r'(?:By\s+)?(.*)', flags=re.I)
 def reform_byline(s):
     """Returns reformatted Byline field
     """
-    m = matchBylineRe.match(s)
+    m = match_by_line_re.match(s)
     if m:
         return m.group(1)
     else:
         return s
     
-matchPeopleRe = re.compile(r'(.*)\s*\,\s*([^\(]*)')
+match_people_re = re.compile(r'(.*)\s*\,\s*([^\(]*)')
 def reform_people(s):
     """Returns reformatted Peoples field
     """
     peoples = s.split(MULTIVALUE_SEPARATOR)
     np = []
     for p in peoples:
-        m = matchPeopleRe.match(p)
+        m = match_people_re.match(p)
         if m:
             np.append("{0!s} {1!s}".format(m.group(2).strip(), m.group(1).strip()))
         else:
             np.append(p)
     return MULTIVALUE_SEPARATOR.join(np)
     
-def parseXML(filename, csvwriter, textdir = ''):
+def parse_xml(filename, csvwriter, textdir = ''):
     """Returns data fields parse from XML input file
     """
     print("Processing input file: {0!s}".format((filename)))
@@ -152,7 +152,7 @@ def parseXML(filename, csvwriter, textdir = ''):
     tree = etree.parse(infile)
     infile.close()
     row = []
-    for f in DataFields:
+    for f in DATA_FIELDS:
         #print f[0], f[2], f[3]
         a = tree.xpath(f[3])
         if f[2].lower() == 'single':
@@ -174,7 +174,7 @@ def parseXML(filename, csvwriter, textdir = ''):
             if s == '':
                 s = EMPTY_VALUE
         if f[0].lower() == 'body':
-            exportText(filename, textdir, s)
+            export_text(filename, textdir, s)
         if f[0].lower() == 'byline':
             s = reform_byline(s)
         if f[0].lower() == 'people':
@@ -200,7 +200,7 @@ def main(options, args):
         print "ERROR: Cannot create output file"
         return -1
     if not options.append:
-        h = [a[0] for a in DataFields]
+        h = [a[0] for a in DATA_FIELDS]
         h.append('Filename')
         csvwriter.writerow(h)
     
@@ -208,7 +208,7 @@ def main(options, args):
     for root, dirnames, filenames in os.walk(rootdir):
       for filename in fnmatch.filter(filenames, '*.xml'):
           fname = os.path.join(root, filename)
-          row = parseXML(fname, csvwriter, options.outdir)
+          row = parse_xml(fname, csvwriter, options.outdir)
           row.append(fname)
           csvwriter.writerow(row)
     csvfile.close()
