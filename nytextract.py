@@ -218,7 +218,6 @@ def main(options, args):
                     tar = tarfile.open(fname, "r:gz")
                     for tarinfo in tar:
                         fname = os.path.join(root, tarinfo.name)
-                        print fname
                         if tarinfo.isreg():
                             f = tar.extractfile(tarinfo)
                             xml = f.read()
