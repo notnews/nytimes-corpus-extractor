@@ -10,6 +10,7 @@ import sys
 import optparse
 import csv
 import fnmatch
+import tarfile
 
 from lxml import etree
 
@@ -143,14 +144,18 @@ def reform_people(s):
         else:
             np.append(p)
     return MULTIVALUE_SEPARATOR.join(np)
-    
-def parse_xml(filename, csvwriter, textdir = ''):
+
+
+def parse_xml(filename, xml=None, textdir=''):
     """Returns data fields parse from XML input file
     """
     print("Processing input file: {0!s}".format((filename)))
-    infile = open(filename, 'rt')
-    tree = etree.parse(infile)
-    infile.close()
+    if xml is None:
+        infile = open(filename, 'rt')
+        tree = etree.parse(infile)
+        infile.close()
+    else:
+        tree = etree.fromstring(xml)
     row = []
     for f in DATA_FIELDS:
         #print f[0], f[2], f[3]
@@ -206,11 +211,25 @@ def main(options, args):
     
     # For each XML files in folder and sub-folders
     for root, dirnames, filenames in os.walk(rootdir):
-      for filename in fnmatch.filter(filenames, '*.xml'):
-          fname = os.path.join(root, filename)
-          row = parse_xml(fname, csvwriter, options.outdir)
-          row.append(fname)
-          csvwriter.writerow(row)
+        for filename in fnmatch.filter(filenames, '*.*'):
+            if re.match('.*\.(tgz|xml)', filename):
+                fname = os.path.join(root, filename)
+                if fname.endswith('tgz'):
+                    tar = tarfile.open(fname, "r:gz")
+                    for tarinfo in tar:
+                        fname = os.path.join(root, tarinfo.name)
+                        print fname
+                        if tarinfo.isreg():
+                            f = tar.extractfile(tarinfo)
+                            xml = f.read()
+                            row = parse_xml(fname, xml, options.outdir)
+                            row.append(fname)
+                            csvwriter.writerow(row)
+                    tar.close()
+                else:
+                    row = parse_xml(fname, None, options.outdir)
+                    row.append(fname)
+                    csvwriter.writerow(row)
     csvfile.close()
     return 0
     
