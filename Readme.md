@@ -1,7 +1,5 @@
 ### Extract All the Fields from the New York Times Corpus to a CSV
 
-[![Code Issues](https://www.quantifiedcode.com/api/v1/project/2d691a58502042249fdfa7c1a8bf24b2/badge.svg)](https://www.quantifiedcode.com/app/project/2d691a58502042249fdfa7c1a8bf24b2)
-
 The New York Times Corpus is a collection of 1.8 million articles published between 1987 and 2007 along with a fair bit of meta data. For more details about The NY Times Corpus, see [https://catalog.ldc.upenn.edu/LDC2008T19](https://catalog.ldc.upenn.edu/LDC2008T19).
 
 Once you have the NY Times Corpus, unzip it to a folder. And then run the script. Script produces a csv and text files containing story text.
