@@ -4,6 +4,10 @@ The New York Times Corpus is a collection of 1.8 million articles published betw
 
 Once you have the NY Times Corpus, unzip it to a folder. And then run the script. Script produces a csv and text files containing story text.
 
+### Requirements
+
+Python 2.x
+
 #### Installation
 
 To install the dependency [lxml 3.1.1](https://pypi.python.org/pypi/lxml/3.1.1):
