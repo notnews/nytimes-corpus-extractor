@@ -6,11 +6,11 @@ Once you have the NY Times Corpus, unzip it to a folder. And then run the script
 
 ### Requirements
 
-Python 2.x
+Python 3.11 or newer
 
 #### Installation
 
-To install the dependency [lxml 3.1.1](https://pypi.python.org/pypi/lxml/3.1.1):
+Install lxml with:
 
 ```
 pip install -r requirements.txt
